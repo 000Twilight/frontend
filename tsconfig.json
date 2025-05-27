@@ -1,0 +1,29 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "module": "ES2020",
+    "lib": [
+      "DOM",
+      "ES2020"
+    ],
+    "types": [
+      "vite/client",
+      "vue"
+    ],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+  }
+}
