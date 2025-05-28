@@ -5,27 +5,35 @@ import GitHub from '../assets/social-media/github.svg'
 import Email from '../assets/social-media/mail.svg'
 
 export const usePersonalDetails = () => {
-  const socialMedia = ref([
-    {
-      link: 'https://github.com/000Twilight',
-      image_file: GitHub,
-      alt_text: 'GitHub'
-    },
-    {
-      link: 'https://linkedin.com/in/mario-richie-lim',
-      image_file: LinkedIn,
-      alt_text: 'LinkedIn'
-    },
-    {
-      link: 'https://instagram.com/mario_r_lim',
-      image_file: Instagram,
-      alt_text: 'Instagram'
-    },
-    {
-      link: 'mailto: mario.richie.lim@gmail.com',
-      image_file: Email,
-      alt_text: 'Email'
-    }
-  ])
-  return { socialMedia }
+    const socialMedia = ref([
+        {
+            link: 'https://github.com/000Twilight',
+            image_file: GitHub,
+            alt_text: 'GitHub'
+        },
+        {
+            link: 'https://linkedin.com/in/mario-richie-lim',
+            image_file: LinkedIn,
+            alt_text: 'LinkedIn'
+        },
+        {
+            link: 'https://instagram.com/mario_r_lim',
+            image_file: Instagram,
+            alt_text: 'Instagram'
+        },
+        {
+            image_file: Email,
+            alt_text: 'Email',
+            is_email: true,
+            user: 'mario.richie.lim',
+            domain: 'gmail.com'
+        }
+    ])
+
+    socialMedia.value.forEach(item => {
+        if (item.is_email) {
+            item.link = `mailto:${item.user}@${item.domain}`
+        }
+    })
+    return { socialMedia }
 }

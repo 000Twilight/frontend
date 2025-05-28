@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import Navbar from '../components/layout/Navbar.vue'
-import Footer from '../components/layout/Footer.vue'
-import SocialBar from '../components/layout/SocialBar.vue'
+import Navbar from './Navbar.vue';
+import Footer from './Footer.vue';
+import SocialBar from './SocialBar.vue';
 </script>

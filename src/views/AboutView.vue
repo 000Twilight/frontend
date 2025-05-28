@@ -7,10 +7,11 @@
         <div class="grid lg:grid-cols-2 gap-16 items-center text-muted">
             <div class="space-y-6 text-base md:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
                 <p ref="para1">
-                    Hello! I'm <strong class="text-primary">Mario Richie Lim</strong>, a
+                    Hello! I'm
+                    <strong class="text-primary">Mario Richie Lim</strong>, a
                     6th-semester Informatics student at
-                    <strong class="text-secondary">Universitas Multimedia Nusantara</strong>.
-                    I’m passionate about building purposeful digital experiences.
+                    <strong class="text-secondary">Universitas Multimedia Nusantara</strong>. I’m passionate about
+                    building purposeful digital experiences.
                 </p>
                 <p ref="para2">
                     I design and develop
@@ -20,7 +21,8 @@
                 <p ref="para3">
                     Whether it’s an
                     <span class="text-highlight font-semibold">e-learning platform</span>
-                    or an internal company tool, I focus on clean code, great UX, and long-term value.
+                    or an internal company tool, I focus on clean code, great UX, and
+                    long-term value.
                 </p>
             </div>
 
@@ -32,7 +34,9 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-20 text-center">
             <div v-for="(stat, index) in stats" :key="index" class="space-y-1">
-                <p :ref="el => statRefs[index] = el" class="text-3xl md:text-4xl font-bold text-primary">0</p>
+                <p :ref="(el) => (statRefs[index] = el)" class="text-3xl md:text-4xl font-bold text-primary">
+                    0
+                </p>
                 <p class="text-muted text-sm font-medium">{{ stat.label }}</p>
             </div>
         </div>
@@ -42,28 +46,42 @@
             <SkillChart :labels="skillLabels" :data="skillValues" />
         </div>
 
-        <div ref="factsSection" class="mt-24 text-center space-y-10 relative h-[300px]">
-            <h2 class="text-2xl font-bold text-primary mb-4">Fun Facts</h2>
+        <!-- Improved Fun Facts Section -->
+        <div ref="factsSection" class="mt-24 text-center relative h-[30vw] rounded-xl p-10 shadow-lg overflow-visible">
+            <h2 class="text-2xl font-bold text-primary mb-8 tracking-wide z-10 relative">
+                Fun Facts
+            </h2>
             <div class="relative w-full h-full">
-                <div v-for="(star, index) in starPositions" :key="index"
-                    class="absolute group transition-transform duration-300 hover:scale-125" :style="{
-                        top: star.y + '%',
-                        left: star.x + '%',
-                        color: star.color,
-                        transform: 'translate(-50%, -50%)',
-                    }" @mouseenter="activeFact = index" @mouseleave="activeFact = null"
-                    :ref="el => starRefs[index] = el">
-                    <Star class="w-8 h-8 md:w-10 md:h-10 drop-shadow-md" />
-                    <transition name="fade-slide">
-                        <span v-if="activeFact === index"
-                            class="absolute px-3 py-1 rounded-md text-normal text-sm font-medium mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap z-10"
-                            :style="{
-                                backgroundColor: star.color + '33',
-                            }">
-                            {{ facts[index] }}
-                        </span>
-                    </transition>
+                <div class="absolute inset-0 px-10 py-10 overflow-visible">
+                    <div v-for="(star, index) in starPositions" :key="index"
+                        class="absolute group cursor-pointer transition-transform duration-300 hover:scale-125" :style="{
+                            top: star.y + '%',
+                            left: star.x + '%',
+                            color: star.color,
+                            transform: 'translate(-50%, -50%)',
+                            filter: activeFact === index ? 'drop-shadow(0 0 10px ' + star.color + ')' : 'none',
+                            zIndex: activeFact === index ? 20 : 10,
+                        }" @mouseenter="activeFact = index" @mouseleave="activeFact = null"
+                        :ref="(el) => (starRefs[index] = el)">
+                        <Star class="w-10 h-10 md:w-12 md:h-12 drop-shadow-md animate-glow"
+                            style="filter: drop-shadow(0 0 6px currentColor);" />
+                        <transition name="fade-slide">
+                            <span v-if="activeFact === index"
+                                class="absolute px-4 py-2 rounded-lg text-sm font-medium mt-3 left-1/2 -translate-x-1/2 whitespace-nowrap z-30 shadow-lg"
+                                :style="{
+                                    background:
+                                        'linear-gradient(135deg, ' + star.color + 'bb, transparent 90%)',
+                                    color: '#fff',
+                                    backdropFilter: 'blur(8px)',
+                                }">
+                                {{ facts[index] }}
+                            </span>
+                        </transition>
+                    </div>
                 </div>
+                <!-- subtle inner shadow -->
+                <div aria-hidden="true"
+                    class="pointer-events-none absolute inset-0 rounded-xl shadow-inner shadow-black/30"></div>
             </div>
         </div>
 
@@ -83,11 +101,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="mt-12 flex justify-center">
+            <a :href="resume" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 text-white rounded-lg text-lg font-semibold hover:bg-violet-700 transition">
+                <FileText class="w-5 h-5" />
+                See my Resume
+            </a>
+        </div>
     </section>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -95,6 +121,8 @@ import { storeToRefs } from 'pinia'
 import { useAboutStore } from '@/stores/aboutStore'
 import SkillChart from '@/components/about/SkillChart.vue'
 import { Star } from 'lucide-vue-next'
+import { FileText } from 'lucide-vue-next'
+import resume from '@/assets/Test.pdf'
 
 const route = useRoute()
 
@@ -128,14 +156,22 @@ const facts = [
     'I enjoy fantasy books.',
     'I can fly (in dreams).',
 ]
-const colors = ['#A78BFA', '#C084FC', '#D8B4FE', '#6EE7B7', '#FBBF24', '#F472B6', '#38BDF8']
+const colors = [
+    '#A78BFA',
+    '#C084FC',
+    '#D8B4FE',
+    '#6EE7B7',
+    '#FBBF24',
+    '#F472B6',
+    '#38BDF8',
+]
 const generateStarPositions = () => {
     const positions = []
     while (positions.length < facts.length) {
         const x = Math.random() * 80 + 10
         const y = Math.random() * 70 + 15
         const color = colors[Math.floor(Math.random() * colors.length)]
-        const tooClose = positions.some(p => Math.hypot(p.x - x, p.y - y) < 15)
+        const tooClose = positions.some((p) => Math.hypot(p.x - x, p.y - y) < 15)
         if (!tooClose) positions.push({ x, y, color })
     }
     return positions
@@ -149,7 +185,9 @@ const languages = [
     { name: 'Indonesian', level: 85, color: '--color-highlight' },
 ]
 const getGradient = (colorVar) => {
-    const color = getComputedStyle(document.documentElement).getPropertyValue(colorVar).trim()
+    const color = getComputedStyle(document.documentElement)
+        .getPropertyValue(colorVar)
+        .trim()
     return `linear-gradient(to right, ${color}, ${color}B3)`
 }
 
@@ -220,14 +258,17 @@ const runAnimations = () => {
     })
 }
 onMounted(() => {
-    runAnimations();
+    runAnimations()
 })
 
-watch(() => route.path, () => {
-    nextTick(() => {
-        runAnimations();
-    })
-})
+watch(
+    () => route.path,
+    () => {
+        nextTick(() => {
+            runAnimations()
+        })
+    }
+)
 </script>
 
 <style scoped>
@@ -254,5 +295,22 @@ watch(() => route.path, () => {
 
 .animate-spin-slow {
     animation: spin-slow 4s linear infinite;
+}
+
+/* New glow animation for stars */
+@keyframes glow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 6px currentColor);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 14px currentColor);
+    }
+}
+
+.animate-glow {
+    animation: glow 2.5s ease-in-out infinite;
 }
 </style>
