@@ -5,10 +5,12 @@
             <div class="col-span-1">
                 <SocialBar />
             </div>
-            <div class="col-span-10"><router-view /></div>
-            <div class="col-span-1"></div>
+            <div class="col-span-11 pr-8"><router-view /></div>
+            <!-- <div class="col-span-1"></div> -->
         </div>
-        <Footer />
+        <div class="pr-4">
+            <Footer />
+        </div>
     </div>
 </template>
 

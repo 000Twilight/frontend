@@ -4,7 +4,7 @@
             About Me
         </h1>
 
-        <div class="grid lg:grid-cols-2 gap-16 items-center text-muted">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-6 text-base md:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
                 <p ref="para1">
                     Hello! I'm
@@ -26,7 +26,7 @@
                 </p>
             </div>
 
-            <div ref="tiltWrapper" class="flex justify-center lg:justify-end">
+            <div ref="rightSection" class="flex justify-center lg:justify-end">
                 <img src="/src/assets/profile.png" alt="Mario Richie Lim Illustration" v-tilt="{ max: 15, speed: 200 }"
                     class="w-64 sm:w-72 h-auto object-contain rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-700" />
             </div>
@@ -47,7 +47,7 @@
         </div>
 
         <!-- Improved Fun Facts Section -->
-        <div ref="factsSection" class="mt-24 text-center relative h-[30vw] rounded-xl p-10 shadow-lg overflow-visible">
+        <div ref="factsSection" class="sm:mt-20 mt-12 mb-4 text-center relative h-[300px] rounded-xl p-10 shadow-lg overflow-visible">
             <h2 class="text-2xl font-bold text-primary mb-8 tracking-wide z-10 relative">
                 Fun Facts
             </h2>
@@ -89,7 +89,7 @@
         <div ref="languageSection" class="mt-24 space-y-6">
             <h2 class="text-2xl font-bold text-primary mb-6">Language Proficiency</h2>
             <div v-for="lang in languages" :key="lang.name" class="space-y-2">
-                <div class="flex justify-between text-sm font-medium text-muted">
+                <div class="flex justify-between text-sm font-medium opacity-90">
                     <span>{{ lang.name }}</span>
                     <span>{{ lang.level }}%</span>
                 </div>
@@ -130,10 +130,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 const aboutSection = ref(null)
 const heading = ref(null)
+const rightSection = ref(null)
 const para1 = ref(null)
 const para2 = ref(null)
 const para3 = ref(null)
-const tiltWrapper = ref(null)
 const factsSection = ref(null)
 const languageSection = ref(null)
 
@@ -144,7 +144,7 @@ const aboutStore = useAboutStore()
 const { stats } = storeToRefs(aboutStore)
 
 const skillLabels = ['Frontend', 'Backend', 'UI/UX', 'Badminton', 'Reading']
-const skillValues = [80, 80, 60, 75, 70]
+const skillValues = [76, 80, 60, 77, 65]
 
 // Fun Facts
 const facts = [
@@ -154,17 +154,31 @@ const facts = [
     'Gamer at heart.',
     'Bit of a perfectionist.',
     'I enjoy fantasy books.',
+    'Grew up in Indonesia.',
+    'God is my guide.',
+    'Like listening to chinese music.',
     'I can fly (in dreams).',
 ]
+
 const colors = [
-    '#A78BFA',
-    '#C084FC',
-    '#D8B4FE',
-    '#6EE7B7',
-    '#FBBF24',
-    '#F472B6',
-    '#38BDF8',
+  '#A78BFA', // soft violet
+  '#C084FC', // lavender
+  '#D8B4FE', // pastel purple
+  '#6EE7B7', // mint green
+  '#FBBF24', // yellow gold
+  '#F472B6', // bubblegum pink
+  '#38BDF8', // sky blue
+  '#FCA5A5', // soft red
+  '#FCD34D', // sunflower yellow
+  '#86EFAC', // light green
+  '#93C5FD', // baby blue
+  '#FDBA74', // peach
+  '#A5B4FC', // indigo tint
+  '#F9A8D4', // pink pastel
+  '#5EEAD4', // teal mint
+  '#FECACA', // blush
 ]
+
 const generateStarPositions = () => {
     const positions = []
     while (positions.length < facts.length) {
@@ -207,6 +221,17 @@ const runAnimations = () => {
         duration: 1.2,
         ease: 'power2.out',
         scrollTrigger: { trigger: aboutSection.value, start: 'top 90%' },
+    })
+
+    gsap.from(rightSection.value, {
+        opacity: 0,
+        x: 80,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+            trigger: aboutSection.value,
+            start: 'top 80%'
+        }
     })
 
     statRefs.value.forEach((el, i) => {

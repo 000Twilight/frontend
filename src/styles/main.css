@@ -1,12 +1,12 @@
 :root {
-    --color-primary: #A78BFA;
-    --color-secondary: #C084FC;
-    --color-highlight: #D8B4FE;
-    --color-success: #6EE7B7;
+    --color-primary: #8B5CF6;
+    --color-secondary: #7C3AED;
+    --color-highlight: #6366F1;
+    --color-success: #22D3EE;
     --color-warning: #FBBF24;
     --color-bg: #0D1117;
     --color-text: #E5E7EB;
-    --color-muted: #9CA3AF;
+    --color-muted: #BFC6D1;
 }
 
 body {
@@ -31,6 +31,10 @@ body {
 
 .text-secondary {
     color: var(--color-secondary);
+}
+
+.text-highlight {
+    color: var(--color-highlight);
 }
 
 .text-success {

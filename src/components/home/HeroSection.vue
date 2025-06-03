@@ -1,27 +1,24 @@
 <template>
     <section ref="heroSection"
-        class="flex flex-col lg:flex-row items-center justify-between min-h-screen py-20 px-3 overflow-hidden">
+        class="flex flex-col lg:flex-row items-center justify-between min-h-screen py-20 px-3 space-x-2 overflow-hidden">
 
-        <!-- Left Section -->
         <div ref="leftSection" class="w-full max-w-3xl space-y-4 text-left">
             <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
                 <span>{{ staticStart }}</span>
                 <span ref="typingTarget"
-                    class="text-accent bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-pink-400 to-fuchsia-500"></span>
+                    class="text-accent bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400"></span>
                 <span>{{ staticEnd }}</span>
             </h1>
 
             <p class="text-base md:text-lg text-muted leading-relaxed">
-                I’m a Full Stack Developer who combines sleek
-                <span class="text-primary font-semibold">design</span> with powerful
-                <span class="text-secondary font-semibold">development</span> — crafting innovative digital solutions
-                that grow with your needs.
+                I’m a Full Stack Developer who loves to <span class="text-primary font-semibold">build</span>, <span
+                    class="text-secondary font-semibold">learn</span>, and <span
+                    class="text-highlight font-semibold">grow</span> through challenges.
             </p>
 
-            <!-- Buttons -->
             <div class="flex flex-wrap justify-start gap-4 pt-6">
                 <RouterLink to="/projects"
-                    class="relative inline-block px-6 py-3 rounded-2xl font-semibold text-white bg-gradient-to-br from-purple-400 to-indigo-500 shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105 overflow-hidden group">
+                    class="relative inline-block px-6 py-3 rounded-2xl font-semibold bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400 shadow-lg hover:shadow-xl transition-all duration-300 ease-out transform hover:-translate-y-1 hover:scale-105 overflow-hidden group">
                     <span class="relative z-10">View Projects</span>
                     <span
                         class="absolute inset-0 bg-white opacity-10 group-hover:opacity-20 transition duration-300"></span>
@@ -43,7 +40,7 @@
         <!-- Right Section -->
         <div ref="rightSection" class="w-full max-w-md mt-16 lg:mt-0 mx-auto">
             <img src="@/assets/programming.png" alt="Hero Illustration"
-                class="w-full object-contain drop-shadow-[0_0_30px_rgba(167,139,250,0.3)]" />
+                class="w-full object-contain drop-shadow-[0_0_15px_rgba(167,139,250,0.3)]" />
         </div>
     </section>
 </template>
