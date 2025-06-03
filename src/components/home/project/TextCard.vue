@@ -1,12 +1,12 @@
 <template>
     <div
-        class="text-card w-64 h-auto p-6 bg-gradient-to-r from-violet-500 to-pink-500 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl group">
-        <!-- TextCard Content -->
-        <div class="relative">
-            <h3 class="text-white font-semibold text-xl mb-3 group-hover:text-white transition-colors">
+        class="text-white/70 w-64 h-auto p-6 rounded-2xl bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400 shadow-light-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl group">
+        <div class="relative space-y-2">
+            <h3
+                class="font-bold text-xl tracking-wide group-hover:text-white/90 transition-colors duration-300">
                 {{ heading }}
             </h3>
-            <p class="text-white text-sm opacity-80 mb-4 group-hover:opacity-100 transition-opacity">
+            <p class="text-sm leading-relaxed group-hover:text-white/90 transition-colors duration-300">
                 {{ text }}
             </p>
         </div>

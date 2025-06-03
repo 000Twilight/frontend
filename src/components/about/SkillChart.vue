@@ -24,7 +24,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const props = defineProps({
     labels: Array,
-    data: Array, // Expect values: 0 - 100 (e.g., 20 = Beginner, 40 = Intermediate...)
+    data: Array, 
 })
 
 const chartContainer = ref(null)
@@ -56,7 +56,8 @@ function getGradient(index) {
     const ctx = canvas.getContext('2d')
     const gradient = ctx.createLinearGradient(0, 0, 0, 300)
     gradient.addColorStop(0, barColors[index])
-    gradient.addColorStop(1, 'rgba(30, 30, 30, 0.4)') 
+    gradient.addColorStop(0.2, barColors[index])
+    gradient.addColorStop(1, 'rgba(30, 30, 30, 0.4)')
     return gradient
 }
 
@@ -75,7 +76,7 @@ const chartData = {
 }
 
 // Custom Y-axis labels instead of percentage
-const skillLevels = ['Beginner', 'Intermediate', 'Proficient', 'Advanced', 'Expert']
+const skillLevels = ['Newbie', 'Leveling Up', 'XP Farmer', 'Grinder', 'Max Level']
 
 const chartOptions = {
     responsive: true,
@@ -88,10 +89,10 @@ const chartOptions = {
         legend: { display: false },
         datalabels: {
             anchor: 'end',
-            align: 'start',
-            offset: -10,
+            align: 'end',
+            offset: 8,
             color: '#E5E7EB',
-            font: { weight: 'bold' },
+            font: { weight: 'bold', size: 14 },
             formatter: value => `${value}%`,
         },
         tooltip: {

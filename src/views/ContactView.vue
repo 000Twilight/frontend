@@ -1,7 +1,7 @@
 <template>
     <section class="min-h-screen flex items-center justify-center px-4 pt-26 pb-10 bg-bg text-text">
         <div ref="formContainer"
-            class="w-full max-w-2xl bg-muted/10 border border-white/30 backdrop-blur-xl rounded-3xl p-10 shadow-lg">
+            class="w-full max-w-2xl backdrop-blur-xl rounded-3xl p-10 shadow-lg">
             <h2 class="text-4xl font-bold text-primary mb-4 text-center">Let's Work Together</h2>
             <p class="text-center text-muted mb-10">
                 Have an idea or project in mind? Reach out and let’s make it happen!

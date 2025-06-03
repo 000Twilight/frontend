@@ -5,16 +5,28 @@
                 My Skill Set
             </h2>
 
-            <div ref="marqueeContainer" class="overflow-x-hidden relative">
+            <div ref="marqueeContainer" class="overflow-hidden relative">
                 <div ref="marqueeWrapper" class="flex whitespace-nowrap">
-                    <!-- Render skills from Pinia store -->
-                    <div v-for="(skill, index) in skills" :key="index"
-                        class="skill-item flex flex-col items-center justify-center space-y-3 mx-6">
-                        <div :class="getWrapperClass(skill.name)">
-                            <img :src="skill.image" :alt="skill.name" class="object-contain"
-                                :class="getImageClass(skill.name)" />
+                    <div class="flex whitespace-nowrap">
+                        <!-- Original list -->
+                        <div v-for="(skill, index) in skills" :key="'first-' + index"
+                            class="skill-item flex flex-col items-center justify-center space-y-3 mx-6">
+                            <div :class="getWrapperClass(skill.name)">
+                                <img :src="skill.image" :alt="skill.name" class="object-contain"
+                                    :class="getImageClass(skill.name)" />
+                            </div>
+                            <p class="text-muted font-semibold text-center">{{ skill.name }}</p>
                         </div>
-                        <p class="text-muted font-semibold text-center">{{ skill.name }}</p>
+
+                        <!-- Duplicated list -->
+                        <div v-for="(skill, index) in skills" :key="'second-' + index"
+                            class="skill-item flex flex-col items-center justify-center space-y-3 mx-6">
+                            <div :class="getWrapperClass(skill.name)">
+                                <img :src="skill.image" :alt="skill.name" class="object-contain"
+                                    :class="getImageClass(skill.name)" />
+                            </div>
+                            <p class="text-muted font-semibold text-center">{{ skill.name }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,7 +67,7 @@ const getImageClass = (name) => {
 onMounted(async () => {
     await nextTick()
 
-    // Fade-in title and marquee container
+    // Fade-in effect
     gsap.from([titleRef.value, marqueeContainer.value], {
         opacity: 0,
         y: 40,
@@ -68,17 +80,20 @@ onMounted(async () => {
         }
     })
 
-    // Adjust infinite marquee with smoother scrolling
-    const totalWidth = marqueeWrapper.value.scrollWidth / 2
+    // Seamless infinite scroll
+    const wrapper = marqueeWrapper.value
+    const inner = wrapper.firstElementChild
+    const width = inner.scrollWidth / 2
 
-    gsap.to(marqueeWrapper.value, {
-        x: `-=${totalWidth}px`,
-        duration: 15,  
-        ease: 'power1.inOut', 
+    gsap.set(wrapper, { x: 0 })
+
+    gsap.to(wrapper, {
+        x: -width,
+        duration: 30,
+        ease: 'linear',
         repeat: -1,
-        yoyo: true, 
         modifiers: {
-            x: (x) => `${parseFloat(x) % totalWidth}px` // Keeps the animation smooth without abrupt jumps
+            x: gsap.utils.unitize(x => parseFloat(x) % width)
         }
     })
 })
@@ -91,6 +106,5 @@ onMounted(async () => {
 
 .skill-item:hover img {
     transform: scale(1.1);
-    /* Slight zoom effect on hover */
 }
 </style>

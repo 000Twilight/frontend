@@ -4,7 +4,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div ref="leftTextBlock"
                     class="lg:col-span-6 flex flex-col justify-center items-center text-center lg:items-start lg:text-left space-y-2">
-                    <p class="text-base md:text-lg font-semibold tracking-wide text-purple-300 uppercase">
+                    <p class="text-base md:text-lg font-semibold tracking-wide uppercase text-highlight">
                         — Let’s walk the talk.
                     </p>
 
@@ -12,15 +12,18 @@
                         class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
                         Crafted digital
                         <span
-                            class="bg-gradient-to-r from-purple-300 to-violet-400 bg-clip-text text-transparent font-black">experiences</span>
+                            class="bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 bg-clip-text text-transparent font-black">
+                            experiences
+                        </span>
                         for remarkable people
                     </h1>
 
                     <h2 class="text-base sm:text-lg md:text-xl font-semibold leading-snug">
-                        A glimpse into what he’s
+                        Here's a glimpse of what he’s
                         <span
-                            class="text-purple-200 font-bold underline decoration-purple-300 decoration-2 underline-offset-4">passionately
-                            built</span>.
+                            class="bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 bg-clip-text text-transparent font-bold underline decoration-indigo-400 decoration-2 underline-offset-4">
+                            passionately crafted
+                        </span>.
                     </h2>
 
                     <div class="ml-0 md:ml-100 transform rotate-90 hidden md:block">
@@ -32,7 +35,6 @@
                 </div>
 
                 <div ref="textCardsContainer" class="lg:col-span-6 flex flex-col space-y-6 items-center lg:items-start">
-                    <!-- Manually add ref to each TextCard wrapper div -->
                     <div ref="textCard1"
                         class="w-64 h-auto shadow-light-xl hover:shadow-light-3xl transform transition-all duration-300 hover:scale-110 bg-opacity-5 backdrop-blur rounded-xl">
                         <TextCard heading="Websites"
@@ -54,18 +56,16 @@
 
         <div class="relative max-w-6xl mx-auto mt-20" id="projects">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-24 gap-y-10">
-                <ProjectCard v-for="(project, index) in limitedProjects" :key="index" :project="project"
-                    @click="openModal(project)" />
+                <ProjectCard v-for="(project, index) in limitedProjects" :key="index" :project="project" />
             </div>
 
             <div class="flex justify-center mt-10 lg:mt-8">
                 <RouterLink to="/projects"
-                    class="show-more-btn font-semibold text-lg rounded-full py-3 px-8 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white relative overflow-hidden">
-                    Show me more! 🔥</RouterLink>
+                    class="show-more-btn font-semibold text-lg rounded-full py-3 px-8 bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 text-white relative overflow-hidden">
+                    Show me more! 🔥
+                </RouterLink>
             </div>
         </div>
-
-        <ProjectModal :isOpen="isModalOpen" :project="selectedProject" @close="closeModal" />
     </section>
 </template>
 
@@ -76,7 +76,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProjectCard from './project/ProjectCard.vue'
 import TextCard from './project/TextCard.vue'
-import ProjectModal from './project/ProjectModal.vue'
 import { useProjectStore } from '@/stores/projectStore'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -92,25 +91,10 @@ const textCard1 = ref(null)
 const textCard2 = ref(null)
 const textCard3 = ref(null)
 
-const isModalOpen = ref(false)
 const selectedProject = ref(null)
 
-const openModal = (project) => {
-    selectedProject.value = project
-    isModalOpen.value = true
-}
-
-const closeModal = () => {
-    isModalOpen.value = false
-    selectedProject.value = null
-}
-
 const { projects } = useProjectStore()
-const limitedProjects = projects.slice(0, 5)
-
-watch(isModalOpen, (newVal) => {
-    document.body.style.overflow = newVal ? 'hidden' : ''
-})
+const limitedProjects = projects.slice(0, 6)
 
 onMounted(async () => {
     await nextTick()
@@ -226,6 +210,6 @@ onMounted(async () => {
 
 .show-more-btn:focus {
     outline: none;
-    box-shadow: 0 0 0 4px rgba(249, 168, 212, 0.5);
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.5);
 }
 </style>
