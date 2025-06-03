@@ -1,6 +1,6 @@
 <template>
     <section ref="aboutSection" class="pt-24 pb-12 px-6 max-w-6xl mx-auto min-h-screen flex flex-col justify-center">
-        <h1 ref="heading" class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-primary">
+        <h1 ref="heading" class="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-purple-500 via-indigo-600 to-cyan-400 bg-clip-text text-transparent">
             About Me
         </h1>
 
