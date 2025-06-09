@@ -6,7 +6,7 @@
                 class="w-6 md:w-8 my-2 transition-all hover:opacity-50 transform hover:scale-90 filter invert" />
         </a>
 
-        <div class="w-[3px] h-24 md:h-32 mt-4 bg-violet-500/80 rounded-full">
+        <div class="w-[3px] h-24 md:h-32 mt-4 bg-gradient-to-b from-cyan-400 via-indigo-600 to-purple-500 rounded-full">
         </div>
     </div>
 </template>

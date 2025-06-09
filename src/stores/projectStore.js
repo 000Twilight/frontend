@@ -1,69 +1,55 @@
 import { defineStore } from 'pinia'
-import Indonesia from '@/assets/indonesia.svg'
+
+// Auto-import all project images (png or jpg)
+const imageModules = import.meta.glob('@/assets/projects/*/*.{png,jpg}', {
+    eager: true,
+    import: 'default'
+})
+
+const imageDescriptions = {
+    '1/1': 'Landing page preview',
+    '1/2': 'Mobile version',
+    '1/3': 'Desktop version',
+    '1/4': 'Tablet version',
+    '1/5': 'Dark mode',
+    '1/6': 'Light mode',
+    '1/7': 'Accessibility features',
+    '2/1': 'Admin dashboard',
+    '2/2': 'Analytics chart',
+    '3/1': 'Product page',
+    '3/2': 'Checkout screen',
+}
+
+const groupedImages = {}
+
+for (const path in imageModules) {
+    const match = path.match(/projects\/(\d+)\/(\d+)\.(png|jpg)$/)
+    if (match) {
+        const [_, projectNum, imageNum] = match
+        const key = `${projectNum}/${imageNum}`
+
+        if (!groupedImages[projectNum]) {
+            groupedImages[projectNum] = []
+        }
+
+        groupedImages[projectNum].push({
+            src: imageModules[path],
+            description: imageDescriptions[key] || `Image ${imageNum}`
+        })
+    }
+}
+
+Object.values(groupedImages).forEach(images =>
+    images.sort((a, b) => a.src.localeCompare(b.src))
+)
 
 export const useProjectStore = defineStore('projectStore', {
     state: () => ({
-        projects: [
-            {
-                title: 'Project 1',
-                image: Indonesia,
-                slug: 'project-1',
-                description: 'Detailed description for Project 1.'
-            },
-            {
-                title: 'Project 2',
-                image: Indonesia,
-                slug: 'project-2',
-                description: 'Detailed description for Project 2.'
-            },
-            {
-                title: 'Project 3',
-                image: Indonesia,
-                slug: 'project-3',
-                description: 'Detailed description for Project 3.'
-            },
-            {
-                title: 'Project 4',
-                image: Indonesia,
-                slug: 'project-4',
-                description: 'Detailed description for Project 4.'
-            },
-            {
-                title: 'Project 5',
-                image: Indonesia,
-                slug: 'project-5',
-                description: 'Detailed description for Project 5.'
-            },
-            {
-                title: 'Project 6',
-                image: Indonesia,
-                slug: 'project-6',
-                description: 'Detailed description for Project 6.'
-            },
-            {
-                title: 'Project 7',
-                image: Indonesia,
-                slug: 'project-7',
-                description: 'Detailed description for Project 7.'
-            },
-            {
-                title: 'Project 8',
-                image: Indonesia,
-                slug: 'project-8',
-                description: 'Detailed description for Project 8.'
-            },
-            {
-                title: 'Project 9',
-                image: Indonesia,
-                slug: 'project-9',
-                description: 'Detailed description for Project 9.'
-            },
-            {
-                title: 'Project 10',
-                image: Indonesia,
-                slug: 'project-10',
-                description: 'Detailed description for Project 10.'
-            }
-        ]
+        projects: Object.keys(groupedImages).map((projectId) => ({
+            title: `Project ${projectId}`,
+            slug: `project-${projectId}`,
+            description: `Detailed description for Project ${projectId}.`,
+            images: groupedImages[projectId]
+        }))
     })
 })

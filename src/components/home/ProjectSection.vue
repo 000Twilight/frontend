@@ -26,12 +26,12 @@
                         </span>.
                     </h2>
 
-                    <div class="ml-0 md:ml-100 transform rotate-90 hidden md:block">
+                    <!-- <div class="ml-0 md:ml-100 transform rotate-90 hidden md:block">
                         <RouterLink to="/projects" class="inline-block">
                             <img src="@/assets/arrows-right.svg" alt="Navigate to Projects" ref="bouncingArrow"
                                 class="w-10 md:w-14" />
                         </RouterLink>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div ref="textCardsContainer" class="lg:col-span-6 flex flex-col space-y-6 items-center lg:items-start">
@@ -55,7 +55,7 @@
         </div>
 
         <div class="relative max-w-6xl mx-auto mt-20" id="projects">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-24 gap-y-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
                 <ProjectCard v-for="(project, index) in limitedProjects" :key="index" :project="project" />
             </div>
 
@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { RouterLink } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -82,7 +82,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const projectsSection = ref(null)
 const title = ref(null)
-const bouncingArrow = ref(null)
+// const bouncingArrow = ref(null)
 const leftTextBlock = ref(null)
 const textCardsContainer = ref(null)
 
@@ -90,8 +90,6 @@ const textCardsContainer = ref(null)
 const textCard1 = ref(null)
 const textCard2 = ref(null)
 const textCard3 = ref(null)
-
-const selectedProject = ref(null)
 
 const { projects } = useProjectStore()
 const limitedProjects = projects.slice(0, 6)
@@ -113,13 +111,13 @@ onMounted(async () => {
     })
 
     // Animate bouncing arrow
-    gsap.to(bouncingArrow.value, {
-        x: 60,
-        duration: 1,
-        ease: 'power1.inOut',
-        yoyo: true,
-        repeat: -1,
-    })
+    // gsap.to(bouncingArrow.value, {
+    //     x: 60,
+    //     duration: 1,
+    //     ease: 'power1.inOut',
+    //     yoyo: true,
+    //     repeat: -1,
+    // })
 
     // Animate project cards on scroll
     const cards = projectsSection.value.querySelectorAll('.project-card')

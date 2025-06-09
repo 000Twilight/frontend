@@ -1,6 +1,7 @@
 <template>
     <section ref="aboutSection" class="pt-24 pb-12 px-6 max-w-6xl mx-auto min-h-screen flex flex-col justify-center">
-        <h1 ref="heading" class="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-purple-500 via-indigo-600 to-cyan-400 bg-clip-text text-transparent">
+        <h1 ref="heading"
+            class="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-purple-500 via-indigo-600 to-cyan-400 bg-clip-text text-transparent">
             About Me
         </h1>
 
@@ -46,8 +47,8 @@
             <SkillChart :labels="skillLabels" :data="skillValues" />
         </div>
 
-        <!-- Improved Fun Facts Section -->
-        <div ref="factsSection" class="sm:mt-20 mt-12 mb-4 text-center relative h-[300px] rounded-xl p-10 shadow-lg overflow-visible">
+        <div ref="factsSection"
+            class="sm:mt-20 mt-12 mb-4 text-center relative h-[300px] rounded-xl p-10 shadow-lg overflow-visible">
             <h2 class="text-2xl font-bold text-primary mb-8 tracking-wide z-10 relative">
                 Fun Facts
             </h2>
@@ -79,7 +80,6 @@
                         </transition>
                     </div>
                 </div>
-                <!-- subtle inner shadow -->
                 <div aria-hidden="true"
                     class="pointer-events-none absolute inset-0 rounded-xl shadow-inner shadow-black/30"></div>
             </div>
@@ -161,22 +161,22 @@ const facts = [
 ]
 
 const colors = [
-  '#A78BFA', // soft violet
-  '#C084FC', // lavender
-  '#D8B4FE', // pastel purple
-  '#6EE7B7', // mint green
-  '#FBBF24', // yellow gold
-  '#F472B6', // bubblegum pink
-  '#38BDF8', // sky blue
-  '#FCA5A5', // soft red
-  '#FCD34D', // sunflower yellow
-  '#86EFAC', // light green
-  '#93C5FD', // baby blue
-  '#FDBA74', // peach
-  '#A5B4FC', // indigo tint
-  '#F9A8D4', // pink pastel
-  '#5EEAD4', // teal mint
-  '#FECACA', // blush
+    '#A78BFA', // soft violet
+    '#C084FC', // lavender
+    '#D8B4FE', // pastel purple
+    '#6EE7B7', // mint green
+    '#FBBF24', // yellow gold
+    '#F472B6', // bubblegum pink
+    '#38BDF8', // sky blue
+    '#FCA5A5', // soft red
+    '#FCD34D', // sunflower yellow
+    '#86EFAC', // light green
+    '#93C5FD', // baby blue
+    '#FDBA74', // peach
+    '#A5B4FC', // indigo tint
+    '#F9A8D4', // pink pastel
+    '#5EEAD4', // teal mint
+    '#FECACA', // blush
 ]
 
 const generateStarPositions = () => {
