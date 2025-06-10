@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 // Auto-import all project images (png or jpg)
-const imageModules = import.meta.glob('@/assets/projects/*/*.{png,jpg}', {
+const imageModules = import.meta.glob('public/projects/*/*.{png,jpg}', {
     eager: true,
     import: 'default'
 })
