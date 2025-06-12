@@ -47,6 +47,23 @@
             <SkillChart :labels="skillLabels" :data="skillValues" />
         </div>
 
+        <!-- Experience Section -->
+        <div ref="experienceSection" class="mt-24">
+            <h2 class="text-2xl font-bold text-primary mb-10 text-center">Experience</h2>
+            <div class="grid gap-8 sm:grid-cols-2">
+                <div v-for="(exp, index) in experiences" :key="index"
+                    class="bg-gradient-to-br from-[#1e293b] to-[#0f172a] border border-white/10 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition duration-500 group">
+                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-primary transition">
+                        {{ exp.position }}
+                    </h3>
+                    <p class="text-sm text-muted mb-2">{{ exp.company }} — {{ exp.year }}</p>
+                    <ul class="list-disc list-inside text-sm text-white/80 space-y-1">
+                        <li v-for="(item, i) in exp.details" :key="i">{{ item }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div ref="factsSection"
             class="sm:mt-20 mt-12 mb-4 text-center relative h-[300px] rounded-xl p-10 shadow-lg overflow-visible">
             <h2 class="text-2xl font-bold text-primary mb-8 tracking-wide z-10 relative">
@@ -136,6 +153,7 @@ const para2 = ref(null)
 const para3 = ref(null)
 const factsSection = ref(null)
 const languageSection = ref(null)
+const experienceSection = ref(null)
 
 const statRefs = ref([])
 const showBars = ref(false)
@@ -145,6 +163,29 @@ const { stats } = storeToRefs(aboutStore)
 
 const skillLabels = ['Frontend', 'Backend', 'UI/UX', 'Badminton', 'Reading']
 const skillValues = [76, 80, 60, 77, 65]
+
+const experiences = [
+    {
+        position: 'IT Support Intern',
+        company: 'PT Nusantara Compnet Integrator',
+        year: '2024',
+        details: [
+            'Developed internal Laravel applications.',
+            'Maintained company software and documentation.',
+            'Collaborated with cross-functional teams.'
+        ],
+    },
+    {
+        position: 'Freelance Web Developer',
+        company: 'Self-employed',
+        year: '2023 – Present',
+        details: [
+            'Built responsive Vue/Express applications.',
+            'Designed intuitive UIs with Tailwind CSS.',
+            'Handled both frontend and backend development.'
+        ],
+    },
+]
 
 // Fun Facts
 const facts = [
@@ -245,6 +286,17 @@ const runAnimations = () => {
                 el.innerText = Math.floor(obj.val)
             },
         })
+    })
+
+    gsap.from(experienceSection.value, {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+            trigger: experienceSection.value,
+            start: 'top 85%',
+        },
     })
 
     ScrollTrigger.create({
