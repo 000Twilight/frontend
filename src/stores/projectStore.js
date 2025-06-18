@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
-// Auto-import all project images (png or jpg)
-const imageModules = import.meta.glob('/projects/*/*.{png,jpg}', {
+// Import all images from src/assets/projects
+const imageModules = import.meta.glob('@/assets/projects/*/*.{png,jpg}', {
     eager: true,
     import: 'default'
 })
@@ -23,25 +23,19 @@ const imageDescriptions = {
 const groupedImages = {}
 
 for (const path in imageModules) {
+    // path example: '/src/assets/projects/1/1.png'
     const match = path.match(/projects\/(\d+)\/(\d+)\.(png|jpg)$/)
     if (match) {
-        const [_, projectNum, imageNum] = match
+        const projectNum = match[1]
+        const imageNum = match[2]
         const key = `${projectNum}/${imageNum}`
-
-        if (!groupedImages[projectNum]) {
-            groupedImages[projectNum] = []
-        }
-
+        if (!groupedImages[projectNum]) groupedImages[projectNum] = []
         groupedImages[projectNum].push({
             src: imageModules[path],
             description: imageDescriptions[key] || `Image ${imageNum}`
         })
     }
 }
-
-Object.values(groupedImages).forEach(images =>
-    images.sort((a, b) => a.src.localeCompare(b.src))
-)
 
 export const useProjectStore = defineStore('projectStore', {
     state: () => ({

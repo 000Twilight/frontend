@@ -56,7 +56,8 @@
 
         <div class="relative max-w-6xl mx-auto mt-20" id="projects">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
-                <ProjectCard v-for="(project, index) in limitedProjects" :key="index" :project="project" />
+                <ProjectCard v-for="(project, index) in limitedProjects" :key="index" :project="project"
+                    @click="openProject(project)" />
             </div>
 
             <div class="flex justify-center mt-10 lg:mt-8">
@@ -71,7 +72,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProjectCard from './project/ProjectCard.vue'
@@ -80,6 +81,7 @@ import { useProjectStore } from '@/stores/projectStore'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const router = useRouter()
 const projectsSection = ref(null)
 const title = ref(null)
 // const bouncingArrow = ref(null)
@@ -93,6 +95,10 @@ const textCard3 = ref(null)
 
 const { projects } = useProjectStore()
 const limitedProjects = projects.slice(0, 6)
+
+const openProject = (project) => {
+    router.push({ name: 'projectsDetail', params: { slug: project.slug } })
+}
 
 onMounted(async () => {
     await nextTick()
