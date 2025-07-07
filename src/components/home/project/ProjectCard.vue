@@ -1,7 +1,7 @@
 <template>
-    <div class="group shadow-lg cursor-pointer relative" @click="$emit('click')">
+    <div class="group shadow-lg cursor-pointer relative flex items-center justify-center" @click="$emit('click')">
         <div :class="[
-            isPortrait ? 'w-1/2 m-auto' : 'w-full aspect-video',
+            isPortrait ? 'w-1/2 max-w-xs' : 'w-full aspect-video',
             'relative rounded-xl'
         ]" v-tilt="{ max: 15, speed: 200, glare: true, 'max-glare': 0.3, scale: 1.05 }">
             <img :src="project.images[0].src" :alt="project.title" class="w-full h-full object-contain"

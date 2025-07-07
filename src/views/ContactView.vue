@@ -10,23 +10,26 @@
             </p>
 
             <form @submit.prevent="handleSubmit" class="space-y-6">
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="bot-field" v-model="botField" />
+
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="input-group">
                         <label class="block text-sm mb-2">Name</label>
-                        <input v-model="form.name" type="text" placeholder="Your name" required
+                        <input v-model="form.name" type="text" name="name" placeholder="Your name" required
                             class="input-focus w-full px-4 py-3 rounded-xl text-text bg-transparent border border-[var(--color-muted)] transition duration-300" />
                     </div>
 
                     <div class="input-group">
                         <label class="block text-sm mb-2">Email</label>
-                        <input v-model="form.email" type="email" placeholder="you@email.com" required
+                        <input v-model="form.email" type="email" name="email" placeholder="you@email.com" required
                             class="input-focus w-full px-4 py-3 rounded-xl text-text bg-transparent border border-[var(--color-muted)] transition duration-300" />
                     </div>
                 </div>
 
                 <div class="input-group">
                     <label class="block text-sm mb-2">Message</label>
-                    <textarea v-model="form.message" rows="5" placeholder="Tell me more..." required
+                    <textarea v-model="form.message" rows="5" name="message" placeholder="Tell me more..." required
                         class="input-focus w-full px-4 py-3 rounded-xl text-text bg-transparent border border-[var(--color-muted)] transition duration-300 resize-none"></textarea>
                 </div>
 
@@ -56,6 +59,7 @@ import { ref, onMounted, nextTick } from 'vue'
 import { gsap } from 'gsap'
 
 const form = ref({ name: '', email: '', message: '' })
+const botField = ref('') // Added for Netlify honeypot
 const submitStatus = ref('')
 const submitMessage = ref('')
 const formContainer = ref(null)
@@ -63,28 +67,45 @@ const popup = ref(null)
 
 const handleSubmit = async () => {
     try {
-        submitStatus.value = 'success'
-        submitMessage.value = '🎉 Message sent! I’ll get back to you soon.'
-        form.value = { name: '', email: '', message: '' }
+        // Construct FormData for Netlify
+        const formData = new FormData();
+        formData.append('form-name', 'contact'); // Must match the 'name' of your hidden HTML form in index.html
+        formData.append('name', form.value.name);
+        formData.append('email', form.value.email);
+        formData.append('message', form.value.message);
+        formData.append('bot-field', botField.value); // Include honeypot field
 
-        await nextTick()
+        const response = await fetch('/', { // Submit to your site's root URL
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, // Essential header
+            body: new URLSearchParams(formData).toString(), // Essential for URL-encoded data
+        });
+
+        if (response.ok) {
+            submitStatus.value = 'success';
+            submitMessage.value = '🎉 Message sent! I’ll get back to you soon.';
+            form.value = { name: '', email: '', message: '' }; // Clear the form
+            botField.value = ''; // Clear honeypot
+        } else {
+            // Netlify usually returns 200 even for some non-successful scenarios
+            // but a non-ok response might indicate a network issue or misconfiguration
+            console.error('Netlify form submission failed:', response.status, response.statusText);
+            submitStatus.value = 'error';
+            submitMessage.value = '⚠️ Error sending message. Please try again.';
+        }
+    } catch (error) {
+        console.error('Form submission error:', error);
+        submitStatus.value = 'error';
+        submitMessage.value = '⚠️ Network error. Please check your connection.';
+    } finally {
+        await nextTick(); // Ensure popup is in DOM before animation
         gsap.fromTo(
             popup.value,
             { opacity: 0, scale: 0.8 },
             { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' }
-        )
-    } catch {
-        submitStatus.value = 'error'
-        submitMessage.value = '⚠️ Error sending message. Please try again.'
-
-        await nextTick()
-        gsap.fromTo(
-            popup.value,
-            { opacity: 0, scale: 0.8 },
-            { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' }
-        )
+        );
     }
-}
+};
 
 const closePopup = () => {
     gsap.to(popup.value, {
@@ -109,6 +130,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* Your existing styles */
 .input-group label {
     color: var(--color-muted);
     transition: color 0.3s ease;

@@ -10,10 +10,10 @@
                 <span>{{ staticEnd }}</span>
             </h1>
 
-            <p class="text-base md:text-lg text-muted leading-relaxed">
-                I’m a Full Stack Developer who loves to <span class="text-primary font-semibold">build</span>, <span
-                    class="text-secondary font-semibold">learn</span>, and <span
-                    class="text-highlight font-semibold">grow</span> through challenges.
+            <p class="text-base md:text-lg text-white leading-relaxed">
+                Hi, I’m Mario who loves to <span class="text-purple-400 font-semibold">build</span>, <span
+                    class="text-indigo-400 font-semibold">learn</span>, and <span
+                    class="text-cyan-400 font-semibold">grow</span> through challenges.
             </p>
 
             <div class="flex flex-wrap justify-start gap-4 pt-6">
@@ -37,14 +37,56 @@
             </div>
         </div>
 
-        <!-- Right Section -->
-        <div ref="rightSection" class="w-full max-w-md mt-16 lg:mt-0 mx-auto">
-            <img src="@/assets/programming.png" alt="Hero Illustration"
-                class="w-full object-contain drop-shadow-[0_0_15px_rgba(167,139,250,0.3)]" />
+        <!-- Right Section - Abstract Digital Illustration with Lucide Icons -->
+        <div ref="rightSection"
+            class="w-full max-w-md mt-16 lg:mt-0 mx-auto relative flex items-center justify-center p-4">
+            <svg class="w-full h-auto object-contain" viewBox="0 0 200 200" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <!-- Background grid/pattern -->
+                <rect x="0" y="0" width="200" height="200" fill="transparent" />
+
+                <!-- Gradients for icons and circles -->
+                <defs>
+                    <linearGradient id="gradient-hero-icon-purple" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#a78bfa" />
+                        <stop offset="100%" stop-color="#c084fc" />
+                    </linearGradient>
+                    <linearGradient id="gradient-hero-icon-indigo" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#818cf8" />
+                        <stop offset="100%" stop-color="#6366f1" />
+                    </linearGradient>
+                    <linearGradient id="gradient-hero-circle" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#a78bfa" />
+                        <stop offset="50%" stop-color="#6366f1" />
+                        <stop offset="100%" stop-color="#22d3ee" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Lucide Icons as SVG Paths -->
+                <!-- Code icon -->
+                <g class="hero-icon-anim" data-delay="0.2">
+                    <Code :size="40" stroke="url(#gradient-hero-icon-purple)" :x="30" :y="30" />
+                </g>
+                <!-- Network icon -->
+                <g class="hero-icon-anim" data-delay="0.4">
+                    <Network :size="40" stroke="url(#gradient-hero-icon-indigo)" :x="130" :y="50" />
+                </g>
+                <!-- SquareTerminal icon -->
+                <g class="hero-icon-anim" data-delay="0.6">
+                    <SquareTerminal :size="40" stroke="url(#gradient-hero-icon-purple)" :x="60" :y="120" />
+                </g>
+                <!-- LineChart icon -->
+                <g class="hero-icon-anim" data-delay="0.8">
+                    <LineChart :size="40" stroke="url(#gradient-hero-icon-indigo)" :x="110" :y="140" />
+                </g>
+                <!-- Sparkles icon -->
+                <g class="hero-icon-anim" data-delay="1.0">
+                    <Sparkles :size="30" stroke="url(#gradient-hero-icon-purple)" :x="90" :y="70" />
+                </g>
+            </svg>
         </div>
     </section>
 </template>
-
 
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
@@ -52,6 +94,8 @@ import { RouterLink } from 'vue-router'
 import Typed from 'typed.js'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// Import Lucide icons
+import { Code, Network, SquareTerminal, LineChart, Sparkles } from 'lucide-vue-next';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -77,7 +121,7 @@ onMounted(async () => {
 
     await nextTick()
 
-    // GSAP Animations
+    // GSAP Animations for sections
     gsap.from(leftSection.value, {
         opacity: 0,
         x: -80,
@@ -99,6 +143,38 @@ onMounted(async () => {
             start: 'top 80%'
         }
     })
+
+    // GSAP Animation for Hero SVG elements
+    gsap.fromTo('.hero-icon-anim',
+        { opacity: 0, scale: 0.5, transformOrigin: 'center center' },
+        {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: 'back.out(1.7)',
+            stagger: (index, target) => parseFloat(target.dataset.delay), // Use data-delay for stagger
+            scrollTrigger: {
+                trigger: heroSection.value,
+                start: 'top 70%',
+                toggleActions: 'play none none none',
+            }
+        }
+    );
+
+    gsap.fromTo('.hero-circle-anim',
+        { drawSVG: '0%' },
+        {
+            drawSVG: '100%',
+            duration: 2,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: heroSection.value,
+                start: 'top 70%',
+                toggleActions: 'play none none none',
+            }
+        }
+    );
+
 
     ScrollTrigger.refresh()
 })

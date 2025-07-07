@@ -1,5 +1,5 @@
 <template>
-    <footer ref="footerRef" class="ml-6 sm:ml-18 px-6 py-12">
+    <footer ref="footerRef" class="px-6 py-12 mt-auto">
         <div class="max-w-7xl mx-auto flex flex-col gap-4 overflow-hidden">
             <div ref="topSection"
                 class="flex flex-col items-center justify-between gap-2 sm:flex-row sm:justify-between">
@@ -76,7 +76,9 @@ onMounted(() => {
         ease: 'power3.out',
         scrollTrigger: {
             trigger: footerRef.value,
-            start: 'top 90%',
+            start: 'top 95%',
+            end: 'bottom bottom',
+            toggleActions: 'play none none none',
         },
     })
 
@@ -88,7 +90,9 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
             trigger: footerRef.value,
-            start: 'top 85%',
+            start: 'top 95%',
+            end: 'bottom bottom',
+            toggleActions: 'play none none none',
         },
     })
 
@@ -100,7 +104,9 @@ onMounted(() => {
         ease: 'power3.out',
         scrollTrigger: {
             trigger: footerRef.value,
-            start: 'top 80%',
+            start: 'top 95%',
+            end: 'bottom bottom',
+            toggleActions: 'play none none none',
         },
     })
 })

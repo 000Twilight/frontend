@@ -5,108 +5,177 @@
             About Me
         </h1>
 
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6 text-base md:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
-                <p ref="para1">
-                    Hello! I'm
-                    <strong class="text-primary">Mario Richie Lim</strong>, a
-                    6th-semester Informatics student at
-                    <strong class="text-secondary">Universitas Multimedia Nusantara</strong>. I’m passionate about
-                    building purposeful digital experiences.
-                </p>
-                <p ref="para2">
-                    I design and develop
-                    <span class="text-primary font-semibold">scalable web & mobile applications</span>
-                    with a sharp eye for detail and design harmony.
-                </p>
-                <p ref="para3">
-                    Whether it’s an
-                    <span class="text-highlight font-semibold">e-learning platform</span>
-                    or an internal company tool, I focus on clean code, great UX, and
-                    long-term value.
-                </p>
+        <div class="grid lg:grid-cols-2 gap-16 xl:gap-20 items-center">
+            <!-- Left Section - Enhanced Text Content -->
+            <div class="space-y-4 text-base md:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
+                <div ref="para1" class="group">
+                    <p class="text-gray-100 transition-all duration-300 group-hover:text-white">
+                        Hello! I'm
+                        <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 
+                                   hover:from-purple-300 hover:to-pink-300 transition-all duration-300 cursor-default">
+                            Mario Richie Lim
+                        </span>, currently a
+                        <span
+                            class="font-semibold text-indigo-400 hover:text-indigo-300 transition-colors duration-300 cursor-default">
+                            Computer Science student
+                        </span> at
+                        <span
+                            class="font-semibold text-indigo-400 hover:text-indigo-300 transition-colors duration-300 cursor-default">
+                            Universitas Multimedia Nusantara
+                        </span>. I'm passionate about building purposeful digital experiences.
+                    </p>
+                </div>
+
+                <div ref="para2" class="group">
+                    <p class="text-gray-100 transition-all duration-300 group-hover:text-white relative">
+                        I design and develop
+                        <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 
+                                   hover:from-purple-300 hover:to-cyan-300 transition-all duration-300 cursor-default">
+                            scalable web & mobile applications
+                        </span>
+                        with a sharp eye for detail and design harmony.
+                    </p>
+                </div>
+
+                <div ref="para3" class="group">
+                    <p class="text-gray-100 transition-all duration-300 group-hover:text-white relative">
+                        Whether it's an
+                        <span class="font-semibold text-cyan-400 hover:text-cyan-300 transition-colors duration-300 cursor-default 
+                                   relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
+                                   after:bg-cyan-400 after:transition-all after:duration-300 hover:after:w-full">
+                            e-learning platform
+                        </span>
+                        or an internal company tool, I focus on clean code, great UX, and long-term value.
+                    </p>
+                </div>
+
+                <!-- Call-to-action badges -->
+                <div class="flex flex-wrap gap-3 pt-4">
+                    <span
+                        class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium 
+                               bg-purple-500/20 text-purple-300 border border-purple-500/30 
+                               hover:bg-purple-500/30 hover:border-purple-400/50 transition-all duration-300 cursor-default">
+                        <span class="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
+                        Available for Projects
+                    </span>
+                    <span
+                        class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium 
+                               bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 
+                               hover:bg-indigo-500/30 hover:border-indigo-400/50 transition-all duration-300 cursor-default">
+                        <span class="w-2 h-2 bg-indigo-400 rounded-full mr-2"></span>
+                        Open to Collaborate
+                    </span>
+                </div>
             </div>
 
+            <!-- Right Section - Enhanced Profile Card -->
             <div ref="rightSection" class="flex justify-center lg:justify-end">
-                <img src="/src/assets/profile.png" alt="Mario Richie Lim Illustration" v-tilt="{ max: 15, speed: 200 }"
-                    class="w-64 sm:w-72 h-auto object-contain rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-700" />
+                <div class="relative group">
+                    <!-- Outer glow effect -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 
+                               rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 
+                               group-hover:duration-200 animate-pulse"></div>
+
+                    <!-- Main profile card -->
+                    <div class="relative w-72 sm:w-80 h-80 sm:h-88 rounded-3xl shadow-2xl overflow-hidden
+                               bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 
+                               border border-gray-700/50 group-hover:border-gray-600/50
+                               transition-all duration-700 group-hover:scale-105">
+
+                        <!-- Background pattern -->
+                        <div class="absolute inset-0 opacity-5">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-cyan-500/20">
+                            </div>
+                            <div class="absolute top-4 right-4 w-20 h-20 border border-indigo-500/20 rounded-full">
+                            </div>
+                            <div class="absolute bottom-8 left-6 w-16 h-16 border border-purple-500/20 rounded-full">
+                            </div>
+                        </div>
+
+                        <!-- Profile icon container -->
+                        <div class="relative h-full flex items-center justify-center p-8">
+                            <div class="relative">
+                                <!-- Icon glow -->
+                                <div class="absolute inset-0 bg-indigo-400/20 rounded-full blur-xl scale-150 
+                                           group-hover:bg-indigo-400/30 transition-all duration-700"></div>
+
+                                <!-- Main icon -->
+                                <CircleUser class="relative w-40 h-40 sm:w-48 sm:h-48 text-indigo-400 
+                                                 group-hover:text-indigo-300 transition-all duration-700 
+                                                 group-hover:scale-110 drop-shadow-2xl" stroke-width="1.2" />
+
+                                <!-- Animated ring -->
+                                <div class="absolute inset-0 border-2 border-transparent rounded-full 
+                                           bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-500 
+                                           bg-clip-border animate-spin-slow opacity-30"></div>
+                            </div>
+                        </div>
+
+                        <!-- Floating accent elements -->
+                        <div class="absolute top-6 left-6 w-2 h-2 bg-purple-400 rounded-full opacity-60 
+                                   animate-pulse group-hover:animate-bounce"></div>
+                        <div class="absolute top-12 right-8 w-1.5 h-1.5 bg-cyan-400 rounded-full opacity-60 
+                                   animate-pulse delay-300 group-hover:animate-bounce"></div>
+                        <div class="absolute bottom-10 right-6 w-2 h-2 bg-indigo-400 rounded-full opacity-60 
+                                   animate-pulse delay-700 group-hover:animate-bounce"></div>
+
+                        <!-- Bottom gradient overlay -->
+                        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t 
+                                   from-gray-900/80 via-gray-900/20 to-transparent"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-20 text-center">
             <div v-for="(stat, index) in stats" :key="index" class="space-y-1">
-                <p :ref="(el) => (statRefs[index] = el)" class="text-3xl md:text-4xl font-bold text-primary">
+                <p :ref="(el) => (statRefs[index] = el)" class="text-3xl md:text-4xl font-bold text-purple-400">
                     0
                 </p>
-                <p class="text-muted text-sm font-medium">{{ stat.label }}</p>
+                <p class="text-gray-400 text-sm font-medium">{{ stat.label }}</p>
             </div>
         </div>
 
         <div class="mt-20">
-            <h2 class="text-2xl font-bold text-primary mb-4">Tech Skills</h2>
+            <h2 class="text-2xl font-bold text-purple-400 mb-4">Tech Skills</h2>
             <SkillChart :labels="skillLabels" :data="skillValues" />
         </div>
 
-        <!-- Experience Section -->
-        <div ref="experienceSection" class="mt-24">
-            <h2 class="text-2xl font-bold text-primary mb-10 text-center">Experience</h2>
-            <div class="grid gap-8 sm:grid-cols-2">
-                <div v-for="(exp, index) in experiences" :key="index"
-                    class="bg-gradient-to-br from-[#1e293b] to-[#0f172a] border border-white/10 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition duration-500 group">
-                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-primary transition">
-                        {{ exp.position }}
-                    </h3>
-                    <p class="text-sm text-muted mb-2">{{ exp.company }} — {{ exp.year }}</p>
-                    <ul class="list-disc list-inside text-sm text-white/80 space-y-1">
-                        <li v-for="(item, i) in exp.details" :key="i">{{ item }}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <ExperienceSection title="Experience" titleClass="text-4xl font-bold" :showCta="false" :showUnderline="false" />
 
-        <div ref="factsSection"
-            class="sm:mt-20 mt-12 mb-4 text-center relative h-[300px] rounded-xl p-10 shadow-lg overflow-visible">
-            <h2 class="text-2xl font-bold text-primary mb-8 tracking-wide z-10 relative">
-                Fun Facts
+        <!-- Fun Facts - Interactive Grid of Icons -->
+        <div ref="factsSection" class="mb-4 text-center p-4 rounded-xl shadow-lg bg-gray-800">
+            <h2 class="text-2xl font-bold text-purple-400 mb-8 tracking-wide">
+                Fun Facts About Me
             </h2>
-            <div class="relative w-full h-full">
-                <div class="absolute inset-0 px-10 py-10 overflow-visible">
-                    <div v-for="(star, index) in starPositions" :key="index"
-                        class="absolute group cursor-pointer transition-transform duration-300 hover:scale-125" :style="{
-                            top: star.y + '%',
-                            left: star.x + '%',
-                            color: star.color,
-                            transform: 'translate(-50%, -50%)',
-                            filter: activeFact === index ? 'drop-shadow(0 0 10px ' + star.color + ')' : 'none',
-                            zIndex: activeFact === index ? 20 : 10,
-                        }" @mouseenter="activeFact = index" @mouseleave="activeFact = null"
-                        :ref="(el) => (starRefs[index] = el)">
-                        <Star class="w-10 h-10 md:w-12 md:h-12 drop-shadow-md animate-glow"
-                            style="filter: drop-shadow(0 0 6px currentColor);" />
-                        <transition name="fade-slide">
-                            <span v-if="activeFact === index"
-                                class="absolute px-4 py-2 rounded-lg text-sm font-medium mt-3 left-1/2 -translate-x-1/2 whitespace-nowrap z-30 shadow-lg"
-                                :style="{
-                                    background:
-                                        'linear-gradient(135deg, ' + star.color + 'bb, transparent 90%)',
-                                    color: '#fff',
-                                    backdropFilter: 'blur(8px)',
-                                }">
-                                {{ facts[index] }}
-                            </span>
-                        </transition>
-                    </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div v-for="(fact, index) in facts" :key="index" class="relative group flex flex-col items-center justify-center p-4 h-32 rounded-lg cursor-pointer
+                           border border-gray-700 bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300
+                           hover:scale-105" @mouseenter="activeFact = index" @mouseleave="activeFact = null"
+                    :ref="(el) => (factItemRefs[index] = el)">
+                    <component :is="factIcons[index % factIcons.length]"
+                        :class="['w-10 h-10', 'text-indigo-400 group-hover:text-cyan-400 transition-colors duration-300', activeFact === index ? 'animate-bounce-icon' : '']"
+                        stroke-width="1.5" />
+                    <p class="mt-2 text-sm font-medium text-white opacity-80">{{ fact.shortTitle }}</p>
+
+                    <!-- Popover for fact details -->
+                    <transition name="fade-slide">
+                        <div v-if="activeFact === index"
+                            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 p-3 rounded-lg text-sm font-medium whitespace-nowrap z-30 shadow-lg
+                                   bg-gradient-to-br from-purple-700/80 to-indigo-700/80 text-white backdrop-blur-sm border border-white/10">
+                            {{ fact.fullText }}
+                        </div>
+                    </transition>
                 </div>
-                <div aria-hidden="true"
-                    class="pointer-events-none absolute inset-0 rounded-xl shadow-inner shadow-black/30"></div>
             </div>
         </div>
 
         <!-- Language Bars -->
         <div ref="languageSection" class="mt-24 space-y-6">
-            <h2 class="text-2xl font-bold text-primary mb-6">Language Proficiency</h2>
+            <h2 class="text-2xl font-bold text-purple-400 mb-6">Language Proficiency</h2>
             <div v-for="lang in languages" :key="lang.name" class="space-y-2">
-                <div class="flex justify-between text-sm font-medium opacity-90">
+                <div class="flex justify-between text-sm font-medium opacity-90 text-white">
                     <span>{{ lang.name }}</span>
                     <span>{{ lang.level }}%</span>
                 </div>
@@ -120,7 +189,7 @@
         </div>
 
         <div class="mt-12 flex justify-center">
-            <a :href="resume" target="_blank" rel="noopener noreferrer"
+            <a href="your_resume_link.pdf" target="_blank" rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 text-white rounded-lg text-lg font-semibold hover:bg-violet-700 transition">
                 <FileText class="w-5 h-5" />
                 See my Resume
@@ -137,9 +206,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { storeToRefs } from 'pinia'
 import { useAboutStore } from '@/stores/aboutStore'
 import SkillChart from '@/components/about/SkillChart.vue'
-import { Star } from 'lucide-vue-next'
-import { FileText } from 'lucide-vue-next'
-import resume from '@/assets/Test.pdf'
+import { useExperienceStore } from '@/stores/experienceStore'
+import {
+    Star, CircleUser, Laptop, FileText,
+    MessageSquareText, Dumbbell, Book, Brain, Gamepad2, Feather, Heart, Coffee, Leaf, Sparkles
+} from 'lucide-vue-next'
+import ExperienceSection from '../components/home/ExperienceSection.vue'
+// import resume from '@/assets/Test.pdf' // Keep if you use a local PDF, otherwise remove and use external link
 
 const route = useRoute()
 
@@ -153,10 +226,10 @@ const para2 = ref(null)
 const para3 = ref(null)
 const factsSection = ref(null)
 const languageSection = ref(null)
-const experienceSection = ref(null)
 
 const statRefs = ref([])
 const showBars = ref(false)
+const factItemRefs = ref([])
 
 const aboutStore = useAboutStore()
 const { stats } = storeToRefs(aboutStore)
@@ -164,76 +237,35 @@ const { stats } = storeToRefs(aboutStore)
 const skillLabels = ['Frontend', 'Backend', 'UI/UX', 'Badminton', 'Reading']
 const skillValues = [76, 80, 60, 77, 65]
 
-const experiences = [
-    {
-        position: 'IT Support Intern',
-        company: 'PT Nusantara Compnet Integrator',
-        year: '2024',
-        details: [
-            'Developed internal Laravel applications.',
-            'Maintained company software and documentation.',
-            'Collaborated with cross-functional teams.'
-        ],
-    },
-    {
-        position: 'Freelance Web Developer',
-        company: 'Self-employed',
-        year: '2023 – Present',
-        details: [
-            'Built responsive Vue/Express applications.',
-            'Designed intuitive UIs with Tailwind CSS.',
-            'Handled both frontend and backend development.'
-        ],
-    },
-]
-
-// Fun Facts
+// Fun Facts - Updated with short titles and full text
 const facts = [
-    'I love badminton.',
-    'Always learning something new.',
-    'Endlessly curious.',
-    'Gamer at heart.',
-    'Bit of a perfectionist.',
-    'I enjoy fantasy books.',
-    'Grew up in Indonesia.',
-    'God is my guide.',
-    'Like listening to chinese music.',
-    'I can fly (in dreams).',
+    { shortTitle: 'Badminton Lover', fullText: 'I love badminton; it\'s my favorite way to stay active!' },
+    { shortTitle: 'Lifelong Learner', fullText: 'Always learning something new to keep my skills sharp.' },
+    { shortTitle: 'Endlessly Curious', fullText: 'My curiosity drives me to explore new technologies and ideas.' },
+    { shortTitle: 'Gamer at Heart', fullText: 'When not coding, you can find me enjoying a good game.' },
+    { shortTitle: 'Detail-Oriented', fullText: 'I\'m a bit of a perfectionist when it comes to clean code and design.' },
+    { shortTitle: 'Fantasy Reader', fullText: 'I enjoy diving into epic fantasy books in my free time.' },
+    { shortTitle: 'Indonesian Roots', fullText: 'Proudly grew up in Indonesia, shaping my diverse perspective.' },
+    { shortTitle: 'God', fullText: 'God is my guide in all aspects of life.' },
+    { shortTitle: 'C-Pop Enthusiast', fullText: 'I like listening to Chinese music; it helps me focus.' },
+    { shortTitle: 'Dream Flier', fullText: 'I can fly... in my dreams, at least!' },
 ]
 
-const colors = [
-    '#A78BFA', // soft violet
-    '#C084FC', // lavender
-    '#D8B4FE', // pastel purple
-    '#6EE7B7', // mint green
-    '#FBBF24', // yellow gold
-    '#F472B6', // bubblegum pink
-    '#38BDF8', // sky blue
-    '#FCA5A5', // soft red
-    '#FCD34D', // sunflower yellow
-    '#86EFAC', // light green
-    '#93C5FD', // baby blue
-    '#FDBA74', // peach
-    '#A5B4FC', // indigo tint
-    '#F9A8D4', // pink pastel
-    '#5EEAD4', // teal mint
-    '#FECACA', // blush
-]
+// Array of Lucide icon components to cycle through
+const factIcons = [
+    Dumbbell,    // For Badminton Lover
+    Book,        // For Lifelong Learner
+    Brain,       // For Endlessly Curious
+    Gamepad2,    // For Gamer at Heart
+    Feather,     // For Detail-Oriented (light touch/precision)
+    Book,        // For Fantasy Reader (repeated or pick another)
+    Leaf,        // For Indonesian Roots (nature/origin)
+    Star,        // For Faith-Guided (spiritual guidance)
+    MessageSquareText, // For C-Pop Enthusiast (music/language)
+    Sparkles     // For Dream Flier (whimsical)
+];
 
-const generateStarPositions = () => {
-    const positions = []
-    while (positions.length < facts.length) {
-        const x = Math.random() * 80 + 10
-        const y = Math.random() * 70 + 15
-        const color = colors[Math.floor(Math.random() * colors.length)]
-        const tooClose = positions.some((p) => Math.hypot(p.x - x, p.y - y) < 15)
-        if (!tooClose) positions.push({ x, y, color })
-    }
-    return positions
-}
-const starPositions = ref(generateStarPositions())
 const activeFact = ref(null)
-const starRefs = ref([])
 
 const languages = [
     { name: 'English', level: 90, color: '--color-secondary' },
@@ -288,17 +320,6 @@ const runAnimations = () => {
         })
     })
 
-    gsap.from(experienceSection.value, {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-            trigger: experienceSection.value,
-            start: 'top 85%',
-        },
-    })
-
     ScrollTrigger.create({
         trigger: languageSection.value,
         start: 'top 90%',
@@ -306,33 +327,24 @@ const runAnimations = () => {
         onEnter: () => (showBars.value = true),
     })
 
-    starRefs.value.forEach((el, i) => {
-        gsap.fromTo(
-            el,
-            { opacity: 0, scale: 0.5, y: 20 },
-            {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 1,
-                delay: i * 0.15,
-                ease: 'back.out(1.7)',
-                scrollTrigger: {
-                    trigger: factsSection.value,
-                    start: 'top 90%',
-                },
-            }
-        )
-
-        gsap.to(el, {
-            scale: 1.05,
-            duration: 1.5,
-            ease: 'sine.inOut',
-            repeat: -1,
-            yoyo: true,
-            delay: i * 0.2,
-        })
-    })
+    // GSAP animation for the fact grid items
+    gsap.fromTo(
+        factItemRefs.value,
+        { opacity: 0, scale: 0.8, y: 20 },
+        {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'back.out(1.7)',
+            scrollTrigger: {
+                trigger: factsSection.value,
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+            },
+        }
+    )
 }
 onMounted(() => {
     runAnimations()
@@ -360,34 +372,20 @@ watch(
     transform: translateY(8px);
 }
 
-@keyframes spin-slow {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.animate-spin-slow {
-    animation: spin-slow 4s linear infinite;
-}
-
-/* New glow animation for stars */
-@keyframes glow {
+/* Specific bounce animation for hovered icons */
+@keyframes bounce-icon {
 
     0%,
     100% {
-        filter: drop-shadow(0 0 6px currentColor);
+        transform: translateY(0);
     }
 
     50% {
-        filter: drop-shadow(0 0 14px currentColor);
+        transform: translateY(-8px);
     }
 }
 
-.animate-glow {
-    animation: glow 2.5s ease-in-out infinite;
+.animate-bounce-icon {
+    animation: bounce-icon 0.6s ease-in-out infinite alternate;
 }
 </style>

@@ -8,8 +8,11 @@
             <div class="col-span-11 pr-8"><router-view /></div>
             <!-- <div class="col-span-1"></div> -->
         </div>
-        <div class="pr-4">
-            <Footer />
+        <div class="grid grid-cols-12">
+            <div class="col-span-1"></div>
+            <div class="col-span-11">
+                <Footer />
+            </div>
         </div>
     </div>
 </template>
