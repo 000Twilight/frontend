@@ -91,7 +91,6 @@ const handleSubmit = async () => {
         submitStatus.value = 'success'
         submitMessage.value = '🎉 Message sent! I\'ll get back to you soon.'
         form.value = { name: '', email: '', message: '' }
-
     } catch (error) {
         console.error('Email sending failed:', error)
         submitStatus.value = 'error'
