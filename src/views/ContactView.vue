@@ -10,8 +10,6 @@
             </p>
 
             <form @submit.prevent="handleSubmit" class="space-y-6">
-                <input type="hidden" name="form-name" value="contact" />
-                <input type="hidden" name="bot-field" v-model="botField" />
 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="input-group">
@@ -33,9 +31,10 @@
                         class="input-focus w-full px-4 py-3 rounded-xl text-text bg-transparent border border-[var(--color-muted)] transition duration-300 resize-none"></textarea>
                 </div>
 
-                <button type="submit"
-                    class="cursor-pointer w-full bg-gradient-to-r from-primary to-secondary font-semibold py-3 px-6 rounded-xl shadow-md hover:scale-[1.02] transition duration-300">
-                    Send Message 🚀
+                <button type="submit" :disabled="isSubmitting"
+                    class="cursor-pointer w-full bg-gradient-to-r from-primary to-secondary font-semibold py-3 px-6 rounded-xl shadow-md hover:scale-[1.02] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
+                    <span v-if="!isSubmitting">Send Message 🚀</span>
+                    <span v-else>Sending... ⏳</span>
                 </button>
             </form>
         </div>
@@ -57,53 +56,54 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import { gsap } from 'gsap'
+import emailjs from '@emailjs/browser'
 
 const form = ref({ name: '', email: '', message: '' })
-const botField = ref('') // Added for Netlify honeypot
 const submitStatus = ref('')
 const submitMessage = ref('')
 const formContainer = ref(null)
 const popup = ref(null)
+const isSubmitting = ref(false)
+
+// EmailJS configuration from environment variables
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const handleSubmit = async () => {
+    if (isSubmitting.value) return
+
+    isSubmitting.value = true
     try {
-        // Construct FormData for Netlify
-        const formData = new FormData();
-        formData.append('form-name', 'contact'); // Must match the 'name' of your hidden HTML form in index.html
-        formData.append('name', form.value.name);
-        formData.append('email', form.value.email);
-        formData.append('message', form.value.message);
-        formData.append('bot-field', botField.value); // Include honeypot field
+        // Send email using EmailJS
+        await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            {
+                from_name: form.value.name,
+                from_email: form.value.email,
+                message: form.value.message,
+                to_name: 'Mario'
+            },
+            EMAILJS_PUBLIC_KEY
+        )
 
-        const response = await fetch('/', { // Submit to your site's root URL
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, // Essential header
-            body: new URLSearchParams(formData).toString(), // Essential for URL-encoded data
-        });
+        submitStatus.value = 'success'
+        submitMessage.value = '🎉 Message sent! I\'ll get back to you soon.'
+        form.value = { name: '', email: '', message: '' }
 
-        if (response.ok) {
-            submitStatus.value = 'success';
-            submitMessage.value = '🎉 Message sent! I’ll get back to you soon.';
-            form.value = { name: '', email: '', message: '' }; // Clear the form
-            botField.value = ''; // Clear honeypot
-        } else {
-            // Netlify usually returns 200 even for some non-successful scenarios
-            // but a non-ok response might indicate a network issue or misconfiguration
-            console.error('Netlify form submission failed:', response.status, response.statusText);
-            submitStatus.value = 'error';
-            submitMessage.value = '⚠️ Error sending message. Please try again.';
-        }
     } catch (error) {
-        console.error('Form submission error:', error);
-        submitStatus.value = 'error';
-        submitMessage.value = '⚠️ Network error. Please check your connection.';
+        console.error('Email sending failed:', error)
+        submitStatus.value = 'error'
+        submitMessage.value = '⚠️ Error sending message. Please try again.'
     } finally {
-        await nextTick(); // Ensure popup is in DOM before animation
+        isSubmitting.value = false
+        await nextTick()
         gsap.fromTo(
             popup.value,
             { opacity: 0, scale: 0.8 },
             { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' }
-        );
+        )
     }
 };
 
