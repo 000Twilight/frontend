@@ -189,7 +189,7 @@
         </div>
 
         <div class="mt-12 flex justify-center">
-            <a href="your_resume_link.pdf" target="_blank" rel="noopener noreferrer"
+            <a href="my-cv.pdf" target="_blank" rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 text-white rounded-lg text-lg font-semibold hover:bg-violet-700 transition">
                 <FileText class="w-5 h-5" />
                 See my Resume
@@ -206,7 +206,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { storeToRefs } from 'pinia'
 import { useAboutStore } from '@/stores/aboutStore'
 import SkillChart from '@/components/about/SkillChart.vue'
-import { useExperienceStore } from '@/stores/experienceStore'
 import {
     Star, CircleUser, Laptop, FileText,
     MessageSquareText, Dumbbell, Book, Brain, Gamepad2, Feather, Heart, Coffee, Leaf, Sparkles
