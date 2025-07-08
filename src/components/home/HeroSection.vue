@@ -1,6 +1,6 @@
 <template>
     <section ref="heroSection"
-        class="flex flex-col lg:flex-row items-center justify-between min-h-screen py-20 px-3 space-x-2 overflow-hidden">
+        class="flex flex-col lg:flex-row items-center justify-between min-h-screen pt-20 pb-10 px-3 space-x-2 overflow-hidden">
 
         <div ref="leftSection" class="w-full max-w-3xl space-y-4 text-left">
             <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">

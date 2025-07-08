@@ -43,9 +43,9 @@
                         class="transition duration-300 ease-in-out hover:scale-[1.15] hover:-translate-y-0.5 hover:shadow-icon">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://twitter.com/your-twitter" target="_blank" rel="noopener" aria-label="Twitter"
+                    <a href="https://www.instagram.com/mario_r_lim/" target="_blank" rel="noopener" aria-label="Twitter"
                         class="transition duration-300 ease-in-out hover:scale-[1.15] hover:-translate-y-0.5 hover:shadow-icon">
-                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>

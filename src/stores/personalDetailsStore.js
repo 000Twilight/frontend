@@ -20,20 +20,8 @@ export const usePersonalDetails = () => {
             link: 'https://instagram.com/mario_r_lim',
             image_file: Instagram,
             alt_text: 'Instagram'
-        },
-        {
-            image_file: Email,
-            alt_text: 'Email',
-            is_email: true,
-            user: 'mario.richie.lim',
-            domain: 'gmail.com'
         }
     ])
 
-    socialMedia.value.forEach(item => {
-        if (item.is_email) {
-            item.link = `mailto:${item.user}@${item.domain}`
-        }
-    })
     return { socialMedia }
 }

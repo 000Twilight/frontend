@@ -69,7 +69,7 @@
                                 v-tilt="{ max: 10, speed: 200, glare: false, scale: 1 }">
                                 <img :src="project.images[0].src" :alt="project.images[0].description" :class="[
                                     'rounded-xl shadow-lg mx-auto',
-                                    isPortraitImage(project.images[0]) ? 'max-w-md mx-auto' : 'max-w-full'
+                                    isPortraitImage(project.images[0]) ? 'max-w-80 mx-auto' : 'max-w-full'
                                 ]" />
                             </div>
 
@@ -101,7 +101,7 @@
                                 ]">
                                     <img :src="img.src" :alt="img.description" :class="[
                                         'rounded-xl shadow-lg',
-                                        isPortraitImage(img) ? 'max-w-sm mx-auto w-full h-auto' : 'w-full h-auto'
+                                        isPortraitImage(img) ? 'max-w-70 mx-auto w-full h-auto' : 'w-full h-auto'
                                     ]" v-tilt="{ max: 15, speed: 200, glare: true, 'max-glare': 0.3, scale: 1.1 }" />
                                 </div>
 
