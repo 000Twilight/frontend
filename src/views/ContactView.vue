@@ -66,9 +66,9 @@ const popup = ref(null)
 const isSubmitting = ref(false)
 
 // EmailJS configuration from environment variables
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+const EMAILJS_SERVICE_ID = 'service_2o8bndy'
+const EMAILJS_TEMPLATE_ID = 'template_cyjlpd4'
+const EMAILJS_PUBLIC_KEY = 'PXrXkojYpDLSSEKUg'
 
 const handleSubmit = async () => {
     if (isSubmitting.value) return
